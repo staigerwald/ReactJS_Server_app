@@ -16,4 +16,6 @@ ENV NODE_PATH /opt/app/node_modules
 WORKDIR /opt/app
 
 COPY /*.json ./
-RUN npm install && npm build && rm -rf node_module
+RUN npm install && npm build
+
+CMD [ "npm", "start" ]
