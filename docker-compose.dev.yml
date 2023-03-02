@@ -10,7 +10,7 @@ services:
     working_dir: /opt/server
     volumes:
       - ./ReactJS_app:/opt/server
-      - ./build:/opt/build
+      - ./ReactJS_app/build:/opt/build
     env_file:
       - .env
     expose:
@@ -41,5 +41,5 @@ services:
       - '80:80'
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./build:/var/www/build
+      - ./ReactJS_app/build:/var/www/build
     restart: always
