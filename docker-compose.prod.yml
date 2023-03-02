@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  # Контейнер с Node.js
+  app:
+    build:
+      context: ./ReactJS_app
+      target: prod_build
+    tty: true
+    working_dir: /opt/server
+    volumes:
+      - ./ReactJS_app:/opt/ReactJS_app
+      - ./ReactJS_app/build:/opt/ReactJS_app/build
+    env_file:
+      - .env
+    expose:
+      - '3000'
+    depends_on:
+      - db
+
+  # Контейнер с базой данных
+  db:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    expose:
+      - '5432'
+    restart: always
+
+  # Контейнер с nginx
+  nginx:
+    container_name: proxy_nginx
+    depends_on:
+      - app
+      - db
+      - pgadmin
+    image: nginx:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./ReactJS_app/build:/var/www/static
+    restart: always
