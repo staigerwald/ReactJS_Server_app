@@ -36,7 +36,6 @@ services:
     depends_on:
       - app
       - db
-      - pgadmin
     image: nginx:latest
     ports:
       - '80:80'
