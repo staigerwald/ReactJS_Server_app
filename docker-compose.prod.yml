@@ -5,12 +5,14 @@ services:
   app:
     build:
       context: ./ReactJS_app
-      target: prod_build
+      target: prod
     tty: true
-    working_dir: /opt/server
+    working_dir: /opt/app
     volumes:
-      - ./ReactJS_app:/opt/ReactJS_app
-      - ./ReactJS_app/build:/opt/ReactJS_app/build
+      - ./ReactJS_app:/opt/app
+      - ./ReactJS_app/build:/opt/app/build
+      - /opt/app/node_modules/
+
     env_file:
       - .env
     expose:

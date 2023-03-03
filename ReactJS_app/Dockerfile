@@ -7,6 +7,8 @@ WORKDIR /opt/app/
 COPY /*.json ./
 RUN npm install
 
+COPY . ./
+
 CMD [ "npm", "start" ]
 
 # prod
@@ -16,6 +18,9 @@ ENV NODE_PATH /opt/app/node_modules
 WORKDIR /opt/app
 
 COPY /*.json ./
-RUN npm install && npm build
+RUN npm install
+
+COPY . ./
+RUN npm run build
 
 CMD [ "npm", "start" ]

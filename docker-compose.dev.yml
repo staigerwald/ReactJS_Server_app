@@ -7,10 +7,10 @@ services:
       context: ./ReactJS_app
       target: dev
     tty: true
-    working_dir: /opt/server
+    working_dir: /opt/app
     volumes:
-      - ./ReactJS_app:/opt/server
-      - ./ReactJS_app/build:/opt/build
+      - ./ReactJS_app:/opt/app
+      - /opt/app/node_modules/
     env_file:
       - .env
     expose:
