@@ -1,5 +1,7 @@
 Dockerfile
+dockerfile
 .dockerignore
-.git*
+.git
+.gitignore
 build
 node_modules
